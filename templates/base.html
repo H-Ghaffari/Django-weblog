@@ -79,6 +79,7 @@
             <li><a href="{% url 'home' %}">Home</a></li>
 
             {% if user.is_authenticated %}
+            <li><a href="{% url 'newpost' %}">+Add new post</a></li>
             <li class="dropdown">
               <a href="#"
                 >{{ user.username }}
@@ -92,8 +93,7 @@
                     style="display: inline"
                   >
                     {% csrf_token %}
-                    <button
-                      type="submit"
+                    <button type="submit"
                       class="btn btn-link p-0 align-baseline text-decoration-none text-black px-3"
                       style="font-size: 14px; !important"
                     >
