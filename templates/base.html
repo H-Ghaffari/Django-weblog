@@ -76,30 +76,50 @@
 
         <nav id="navbar" class="navbar">
           <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+
             {% if user.is_authenticated %}
-            <li>
-              <form
-                action="{% url 'logout' %}"
-                method="post"
-                style="display: inline"
-              >
-                {% csrf_token %}
-                <button
-                  type="submit"
-                  class="btn btn-link p-0 align-baseline text-decoration-none text-white"
-                  style="font-size: 14px; !important"
-                >
-                  Logout
-                </button>
-              </form>
+            <li class="dropdown">
+              <a href="#"
+                >{{ user.username }}
+                <span><i class="bi bi-chevron-down"></i></span
+              ></a>
+              <ul>
+                <li>
+                  <form
+                    action="{% url 'logout' %}"
+                    method="post"
+                    style="display: inline"
+                  >
+                    {% csrf_token %}
+                    <button
+                      type="submit"
+                      class="btn btn-link p-0 align-baseline text-decoration-none text-black px-3"
+                      style="font-size: 14px; !important"
+                    >
+                      Logout
+                    </button>
+                  </form>
+                </li>
+                <li>
+                  <a href="{% url 'password_change' %}">Password Change</a>
+                </li>
+                <li><a href="{% url 'password_reset' %}">Password Reset</a></li>
+              </ul>
             </li>
 
             {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li class="dropdown">
+              <a href="#"
+                >User <span><i class="bi bi-chevron-down"></i></span
+              ></a>
+              <ul>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+              </ul>
+            </li>
 
             {% endif %}
-            <li><a href="{% url 'home' %}">Blog</a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
